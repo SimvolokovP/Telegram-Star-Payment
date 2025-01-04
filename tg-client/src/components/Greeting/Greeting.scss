@@ -1,0 +1,11 @@
+.greeting {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 54px;
+
+    &__avatar {
+        width: 64px;
+        border-radius: 100%;
+    }
+}

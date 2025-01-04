@@ -6,9 +6,20 @@
 
   &__stars {
     font-size: 32px;
+    font-weight: 700;
     color: var(--tg-theme-accent-text-color);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 16px;
+  }
+
+  &__label {
+    width: 100%;
+    display: flex;
+
+    & input {
+        width: 100%;
+        font-size: 18px;
+    }
   }
 }

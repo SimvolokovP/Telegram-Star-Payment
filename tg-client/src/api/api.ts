@@ -1,5 +1,3 @@
-const DEFAULT_URL = "http://localhost:3000";
-
 async function request(endpoint: string, method: string = "GET", data?: any) {
   const options: RequestInit = {
     method: method,
@@ -9,7 +7,7 @@ async function request(endpoint: string, method: string = "GET", data?: any) {
     body: data ? JSON.stringify(data) : undefined,
   };
 
-  const resp = await fetch(`${DEFAULT_URL}/api/${endpoint}`, options);
+  const resp = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/${endpoint}`, options);
   const jsonData = resp.json();
 
   if (resp.ok) return jsonData;

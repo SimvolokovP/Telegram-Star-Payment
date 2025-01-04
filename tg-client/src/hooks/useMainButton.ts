@@ -6,7 +6,7 @@ const useMainButton = () => {
       isVisible: false,
       isEnabled: true,
       hasShineEffect: true,
-      text: "Buy",
+      text: "Donate",
     });
   };
 

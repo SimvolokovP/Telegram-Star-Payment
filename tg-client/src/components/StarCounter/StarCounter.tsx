@@ -15,7 +15,9 @@ const StarCounter: FC<StarCounterProps> = ({ stars, calcStars }) => {
         {stars}
         <IoIosStarOutline />
       </div>
-      <input min={0} onChange={calcStars} type="number" />
+      <label className="star-counter__label">
+        <input placeholder="Укажи сумму доната" min={0} onChange={calcStars} type="number" />
+      </label>
     </div>
   );
 };

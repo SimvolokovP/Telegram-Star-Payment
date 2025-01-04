@@ -4,18 +4,19 @@ import useMainButton from "./hooks/useMainButton";
 import StarCounter from "./components/StarCounter/StarCounter";
 import { hapticFeedback, invoice, mainButton } from "@telegram-apps/sdk-react";
 import request from "./api/api";
+import useTg from "./hooks/useTg";
 
 function App() {
   const [stars, setStars] = useState<number>(999);
   const { hideMainButton, showMainButton, initMainButton } = useMainButton();
+  const { user } = useTg();
 
   const calcStars = (e: any) => {
     const userValue = e.target.value.trim();
-    const starsCost = +userValue / (0.625 / 50);
 
     if (userValue && !isNaN(userValue) && userValue > 0) {
       showMainButton();
-      setStars(starsCost);
+      setStars(+userValue);
     } else {
       hideMainButton();
       setStars(0);
@@ -32,10 +33,9 @@ function App() {
         hapticFeedback.impactOccurred("soft");
         console.log("haptic click!");
       }
-      //id не забыть
       const resp = await request("donate", "POST", {
         amount: stars,
-        userId: "760321368",
+        userId: user?.id,
       });
       console.log(resp);
       invoice.open(resp.invoice_link.replace("https://t.me/$", ""));
@@ -52,6 +52,7 @@ function App() {
     <>
       <div className="container page">
         <Greeting />
+        <h1>Задонатить звезды!</h1>
         <StarCounter stars={stars} calcStars={calcStars} />
       </div>
     </>
